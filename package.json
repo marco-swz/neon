@@ -1,21 +1,25 @@
 {
-  "name": "helium",
-  "version": "0.0.1",
+  "name": "neon",
+  "version": "1.0.0",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/helium/helium.esm.js",
+  "unpkg": "dist/neon/neon.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/helium/helium.esm.js",
-      "require": "./dist/helium/helium.cjs.js"
+      "import": "./dist/neon/neon.esm.js",
+      "require": "./dist/neon/neon.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./ne-button": {
+      "import": "./dist/components/ne-button.js",
+      "types": "./dist/components/ne-button.d.ts"
+    },
+    "./ne-input": {
+      "import": "./dist/components/ne-input.js",
+      "types": "./dist/components/ne-input.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",

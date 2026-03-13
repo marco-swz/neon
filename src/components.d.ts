@@ -6,56 +6,163 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface NeButton {
         /**
-          * The first name
+          * Disables the button if set. Clicks will no longer fire events.
+          * @default false
          */
-        "first": string;
+        "disabled": boolean;
         /**
-          * The last name
+          * This property can be used to assign a link to the button. If it is clicked, the link is opened.
          */
-        "last": string;
+        "href"?: string;
         /**
-          * The middle name
+          * Sets the `loading` state the button. It shows a loading animation and disables inputs.
+          * @default false
          */
-        "middle": string;
+        "loading": boolean;
+        /**
+          * Sets the (color) theme of the button.
+         */
+        "theme"?: 'danger' | 'warning' | 'success';
+        /**
+          * Sets the style variant of the button.
+          * @default 'outline'
+         */
+        "variant"?: 'primary' | 'ghost' | 'outline';
+    }
+    interface NeInput {
+        "default"?: string;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "loading": boolean;
+        "name"?: string;
+        "pattern"?: string;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * @default false
+         */
+        "required": boolean;
+        "step"?: number;
+        "type"?: string;
+        "value"?: string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLNeButtonElement extends Components.NeButton, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLNeButtonElement: {
+        prototype: HTMLNeButtonElement;
+        new (): HTMLNeButtonElement;
+    };
+    interface HTMLNeInputElement extends Components.NeInput, HTMLStencilElement {
+    }
+    var HTMLNeInputElement: {
+        prototype: HTMLNeInputElement;
+        new (): HTMLNeInputElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ne-button": HTMLNeButtonElement;
+        "ne-input": HTMLNeInputElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface NeButton {
         /**
-          * The first name
+          * Disables the button if set. Clicks will no longer fire events.
+          * @default false
          */
-        "first"?: string;
+        "disabled"?: boolean;
         /**
-          * The last name
+          * This property can be used to assign a link to the button. If it is clicked, the link is opened.
          */
-        "last"?: string;
+        "href"?: string;
         /**
-          * The middle name
+          * Sets the `loading` state the button. It shows a loading animation and disables inputs.
+          * @default false
          */
-        "middle"?: string;
+        "loading"?: boolean;
+        /**
+          * Sets the (color) theme of the button.
+         */
+        "theme"?: 'danger' | 'warning' | 'success';
+        /**
+          * Sets the style variant of the button.
+          * @default 'outline'
+         */
+        "variant"?: 'primary' | 'ghost' | 'outline';
     }
+    interface NeInput {
+        "default"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * @default false
+         */
+        "loading"?: boolean;
+        "name"?: string;
+        "pattern"?: string;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
+        "step"?: number;
+        "type"?: string;
+        "value"?: string;
+    }
+
+    interface NeButtonAttributes {
+        "disabled": boolean;
+        "loading": boolean;
+        "href": string;
+        "theme": 'danger' | 'warning' | 'success';
+        "variant": 'primary' | 'ghost' | 'outline';
+    }
+    interface NeInputAttributes {
+        "default": string;
+        "disabled": boolean;
+        "loading": boolean;
+        "name": string;
+        "placeholder": string;
+        "required": boolean;
+        "readonly": boolean;
+        "type": string;
+        "value": string;
+        "step": number;
+        "pattern": string;
+    }
+
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "ne-button": Omit<NeButton, keyof NeButtonAttributes> & { [K in keyof NeButton & keyof NeButtonAttributes]?: NeButton[K] } & { [K in keyof NeButton & keyof NeButtonAttributes as `attr:${K}`]?: NeButtonAttributes[K] } & { [K in keyof NeButton & keyof NeButtonAttributes as `prop:${K}`]?: NeButton[K] };
+        "ne-input": Omit<NeInput, keyof NeInputAttributes> & { [K in keyof NeInput & keyof NeInputAttributes]?: NeInput[K] } & { [K in keyof NeInput & keyof NeInputAttributes as `attr:${K}`]?: NeInputAttributes[K] } & { [K in keyof NeInput & keyof NeInputAttributes as `prop:${K}`]?: NeInput[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ne-button": LocalJSX.IntrinsicElements["ne-button"] & JSXBase.HTMLAttributes<HTMLNeButtonElement>;
+            "ne-input": LocalJSX.IntrinsicElements["ne-input"] & JSXBase.HTMLAttributes<HTMLNeInputElement>;
         }
     }
 }
