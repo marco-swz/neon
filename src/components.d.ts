@@ -38,6 +38,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Sets the focus to the input.
+         */
+        "focus": () => Promise<NeonInput>;
+        /**
           * @default false
          */
         "loading": boolean;
@@ -52,6 +56,14 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the input to the default state.
+         */
+        "reset": () => Promise<NeonInput>;
+        /**
+          * Selects (highlights) the input text.
+         */
+        "select": () => Promise<NeonInput>;
         "step"?: number;
         "type"?: string;
         "value"?: string;
@@ -64,7 +76,11 @@ declare global {
         prototype: HTMLNeButtonElement;
         new (): HTMLNeButtonElement;
     };
-    interface HTMLNeInputElement extends Components.NeInput, HTMLStencilElement {
+    interface HTMLNeInputElement extends Omit<Components.NeInput, "focus">, HTMLStencilElement {
+        /**
+          * Sets the focus to the input.
+         */
+        "focus": () => Promise<NeonInput>;
     }
     var HTMLNeInputElement: {
         prototype: HTMLNeInputElement;

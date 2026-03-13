@@ -1,207 +1,147 @@
 :host {
-    --he-button-loading-cursor: default;
-    --he-button-cursor: pointer;
-    --he-button-disabled-cursor: not-allowed;
-    --he-button-borderWidth: 0.1rem;
-    --he-button-fontSize: 14px;
-    --he-button-height: 35px;
-    --he-button-width: fit-content;
+  --ne-input-borderColor: lightgrey;
+  --ne-input-borderWidth: 1px;
+  --ne-input-borderStyle: solid;
+  --ne-input-color: black;
+  --ne-input-fontSize: 14px;
+  --ne-input-backgroundColor: whitesmoke;
+  --ne-input-hover-borderColor: grey;
+  --ne-input-loading-spinner-color: black;
+  --ne-input-padding: 0.3rem 0.4rem;
 
-    --he-button-color: black;
-    --he-button-backgroundColor: white;
-    --he-button-hover-backgroundColor: hsl(240 4.8% 95.9%);
-    --he-button-hover-color: black;
-    --he-button-borderColor: hsl(240 4.9% 83.9%);
-    --he-button-hover-borderColor: var(--he-button-borderColor);
-
-    /** These vars are use for the theme styling and are private for now **/
-    --he-theme-color: var(--he-accent-color, steelblue);
-    --he-theme-bright1-color: hsl(from var(--he-theme-color) h s calc(l + 10));
-    --he-theme-contrast: white;
-
-    display: inline-block;
-    text-wrap: nowrap;
-    border-radius: 3px;
-    outline-style: none;
-    box-shadow: none !important;
-    width: var(--he-button-width);
-    min-width: var(--he-button-minWidth);
-    font-size: var(--he-button-fontSize);
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  background-color: var(--ne-input-backgroundColor);
+  width: 100%;
+  height: 1.6rem;
+  font-size: var(--ne-input-fontSize);
+  border-style: var(--ne-input-borderStyle);
+  border-color: var(--ne-input-borderColor);
+  border-width: var(--ne-input-borderWidth);
+  color: var(--ne-input-color);
+  cursor: text;
 }
 
-:host([theme=danger]) {
-    --he-theme-color: hsl(0 72.2% 50.6%);
-    --he-theme-bright1-color: hsl(from var(--he-theme-color) h s calc(l + 10));
-    --he-theme-contrast: white;
+#cont-inp {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
 }
 
-:host([theme=warning]) {
-    --he-theme-color: hsl(32.1 94.6% 43.7%);
-    --he-theme-bright1-color: hsl(from var(--he-theme-color) h s calc(l + 10));
-    --he-theme-contrast: white;
+:host(:hover),
+:host([variant="underline"]:hover) {
+  transition:
+    border-color 0.2s;
+  border-color: var(--ne-input-hover-borderColor);
 }
 
-:host([theme=success]) {
-    --he-theme-color: hsl(142.1 76.2% 36.3%);
-    --he-theme-bright1-color: hsl(from var(--he-theme-color) h s calc(l + 10));
-    --he-theme-contrast: white;
+:host([variant="underline"]) {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  border-bottom-color: var(--ne-input-borderColor);
 }
 
-:host([theme][variant]),
-:host([theme]) {
-    --he-button-color: var(--he-theme-color);
-    --he-button-hover-color: var(--he-theme-contrast);
-    --he-button-backgroundColor: var(--he-theme-contrast);
-    --he-button-hover-backgroundColor: var(--he-theme-color);
-    --he-button-borderColor: var(--he-theme-color);
-    --he-button-hover-borderColor: var(--he-theme-color);
-}
-
-:host([variant=primary]), :host([variant=primary][theme]) {
-    --he-button-color: var(--he-theme-contrast);
-    --he-button-hover-color: var(--he-theme-contrast);
-    --he-button-backgroundColor: var(--he-theme-color);
-    --he-button-hover-backgroundColor: var(--he-theme-bright1-color);
-    --he-button-borderColor: var(--he-theme-color);
-    --he-button-hover-borderColor: var(--he-theme-bright1-color);
-}
-
-:host([variant=ghost]) {
-    --he-button-borderColor: white;
-    --he-button-hover-borderColor: var(--he-button-hover-backgroundColor);
-}
-:host([variant=ghost][theme]) {
-    --he-button-color: var(--he-theme-color);
-    --he-button-hover-color: var(--he-theme-contrast);
-    --he-button-backgroundColor: var(--he-theme-contrast);
-    --he-button-hover-backgroundColor: var(--he-theme-color);
-    --he-button-borderColor: var(--he-theme-contrast);
-    --he-button-hover-borderColor: var(--he-theme-color);
-}
-
-:host([type=hidden]) {
+:host([type="hidden"]) {
   display: none;
 }
 
-a {
-    width: inherit;
-    cursor: inherit;
-    padding: inherit;
-    border-radius: inherit;
-    outline-style: inherit;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    min-width: inherit;
+:host([invalid]) {
+  transition:
+    border-color 0.2s;
+  border-color: indianred;
 }
 
-#he-button {
-    position: relative;
-    border-radius: inherit;
-    padding: inherit;
-    vertical-align: middle;
-    text-align: center;
-    font-size: inherit;
-    background-color: var(--he-button-backgroundColor);
-    outline-style: inherit;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    cursor: inherit;
-    color: var(--he-button-color);
-    height: var(--he-button-height);
-    border-width: var(--he-button-borderWidth);
-    border-style: solid;
-    border-color: var(--he-button-borderColor);
-    padding: 0px 10px;
-    font-weight: 600;
-    width: inherit;
-    overflow: hidden;
-    min-width: inherit;
+:host([invalid]:hover) {
+  border-color: indianred;
 }
 
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto 10px auto auto;
+  border: 3px solid darkgrey;
+  border-radius: 50%;
+  border-bottom-color: var(--ne-input-loading-spinner-color);
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+:host([ok]) {
+  border-color: green;
+}
+
+:host([ok])::after {
+  content: "✔";
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  color: green;
+  top: 1px;
+  right: 8px;
+  font-weight: 700;
+}
+
+#inp-main {
+  font-family: inherit;
+  outline: none;
+  background-color: inherit;
+  width: 100%;
+  font-size: inherit;
+  border-radius: inherit;
+  border: none;
+  padding: var(--ne-input-padding);
+  cursor: inherit;
+  color: inherit;
+}
+
+:host([readonly]:hover),
+:host([disabled]:hover) {
+  border-color: var(--ne-input-borderColor);
+}
+
+:host([readonly]),
 :host([disabled]) {
-    pointer-events: none;
+  cursor: default;
+  color: hsl(from var(--ne-input-color) h s calc(l + 50))
 }
 
-:host([disabled]) #he-button {
-    opacity: 0.5;
-    cursor: var(--he-button-disabled-cursor);
+div[slot=content] {
+  max-height: 200px;
 }
 
-:host(:not([loading]):not([disabled]):hover) #he-button {
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s;
-    background-color: var(--he-button-hover-backgroundColor);
-    border-color: var(--he-button-hover-borderColor);
-    cursor: var(--he-button-cursor);
-    color: var(--he-button-hover-color);
+#cont-options {
+  display: flex;
+  flex-direction: column;
 }
 
-:host(:not([loading]):not([disabled]):active) #he-button {
-    animation: inset-anim 0.15s 1 ease-in-out;
+ne-popover {
+  --ne-popover-borderRadius: 5px;
 }
 
-:host([loading]) {
-    pointer-events: none;
+::slotted(*) {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
 }
 
-:host([loading]) #he-button {
-    opacity: 0.5;
-    cursor: var(--he-button-loading-cursor);
-}
-
-:host([loading]) #he-button::after {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    border: 4px solid transparent;
-    border-top-color: var(--he-button-spinner-color, black);
-    border-radius: 50%;
-    animation: button-loading-spinner 1s ease infinite;
-}
-
-:host([ok]) #he-button::after {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    border: 4px solid transparent;
-    border-bottom-color: var(--he-button-spinner-color, black);
-    border-right-color: var(--he-button-spinner-color, black);
-    transform: rotate(45deg);
+::slotted(*:hover) {
+  background-color: hsl(from white h s calc(l - 10));
 }
 
 @keyframes button-loading-spinner {
-    from {
-        transform: rotate(0turn);
-    }
+  from {
+    transform: rotate(0turn);
+  }
 
-    to {
-        transform: rotate(1turn);
-    }
+  to {
+    transform: rotate(1turn);
+  }
 }
-
-@keyframes inset-anim {
-    0% {
-        box-shadow: inset 0 0 0 0 hsl(from var(--he-button-hover-backgroundColor) h s l);
-    }
-    50% {
-        box-shadow: inset 0 0 10px 0 hsl(from var(--he-button-hover-backgroundColor) h s calc(l - 10));
-    }
-    100% {
-        box-shadow: inset 0 0 0 0 hsl(from var(--he-button-hover-backgroundColor) h s l);
-    }
-}
-

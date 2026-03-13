@@ -43,14 +43,14 @@ export class NeonButton {
   render() {
     return (
       <a href={this.href}>
-        <button id="he-button" onClick={this._handleClickButton}>
+        <button id="ne-button" onClick={this.handleClickButton}>
           <slot></slot>
         </button>
       </a>
     );
   }
 
-  private _handleClickButton() {
+  private handleClickButton() {
 
   }
 }

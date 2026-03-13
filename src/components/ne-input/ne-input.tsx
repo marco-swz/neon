@@ -1,4 +1,4 @@
-import { Component, Prop, h, AttachInternals, Watch } from '@stencil/core';
+import { Component, Prop, h, AttachInternals, Watch, Method } from '@stencil/core';
 
 @Component({
   tag: 'ne-input',
@@ -7,9 +7,9 @@ import { Component, Prop, h, AttachInternals, Watch } from '@stencil/core';
   formAssociated: true,
 })
 export class NeonInput {
-  @AttachInternals() _internals: ElementInternals;
+  @AttachInternals() internals: ElementInternals;
 
-  private _refs: {
+  private refs: {
     input: HTMLInputElement
   } = {
       input: null
@@ -39,7 +39,7 @@ export class NeonInput {
   @Prop({ reflect: true })
   type?: string;
 
-  @Prop({ reflect: true })
+  @Prop({ reflect: true, mutable: true })
   value?: string;
 
   @Prop({ reflect: true })
@@ -51,8 +51,8 @@ export class NeonInput {
   render() {
     return (
       <div id="cont-inp">
-        <input id="inp-main" ref={($el) => this._refs.input = $el}
-          onChange={this._handleChangeInput}
+        <input id="inp-main" ref={($el) => this.refs.input = $el}
+          onChange={(evt: InputEvent) => this.handleChangeInput(evt)}
           type={this.type}
           placeholder={this.placeholder}
           step={this.step}
@@ -66,61 +66,20 @@ export class NeonInput {
     );
   }
 
-  @Watch('default')
-  protected _watchDefault(newValue: string) {
-    if (this.value === '' && !this.disabled) {
-      this._internals.setFormValue(newValue);
-    }
-  }
-
-  @Watch('value')
-  protected _watchValue(newValue: string) {
-    if (!this.disabled) {
-      this._internals.setFormValue(newValue ?? '');
-    }
-  }
-
-  @Watch('disabled')
-  protected _watchDisabled(newValue: string) {
-    if (newValue != null) {
-      this._internals.setFormValue(null);
-    } else {
-      this._internals.setFormValue(this.value);
-    }
-  }
-
-  componentWillLoad() {
-    this._internals.setFormValue('');
-  }
-
-  /**
-  * Checks if the value of the input is valid and
-  * reports the validity.
-  */
-  checkValidity(): boolean {
-    const validity = this._refs.input.validity ?? { valid: true };
-    return validity.valid;
-  }
-
   /**
   * Sets the focus to the input.
   */
-  focus(): NeonInput {
-    this._refs.input.focus();
+  @Method()
+  async focus(): Promise<NeonInput> {
+    this.refs.input.focus();
     return this;
-  }
-
-  /**
-  * The native callback function for resetting the input a part of a form.
-  */
-  formResetCallback() {
-    this.value = "";
   }
 
   /**
   * Resets the input to the default state.
   */
-  reset(): NeonInput {
+  @Method()
+  async reset(): Promise<NeonInput> {
     this.formResetCallback();
     return this;
   }
@@ -128,22 +87,73 @@ export class NeonInput {
   /**
   * Selects (highlights) the input text.
   */
-  select(): NeonInput {
-    this._refs.input.select();
+  @Method()
+  async select(): Promise<NeonInput> {
+    this.refs.input.select();
     return this;
+  }
+
+  @Watch('default')
+  protected watchDefault(newValue: string) {
+    if (this.value === '' && !this.disabled) {
+      this.internals.setFormValue(newValue);
+    }
+  }
+
+  @Watch('value')
+  protected watchValue(newValue: string) {
+    if (!this.disabled) {
+      this.internals.setFormValue(newValue ?? '');
+    }
+  }
+
+  @Watch('disabled')
+  protected watchDisabled(newValue: string) {
+    if (newValue != null) {
+      this.internals.setFormValue(null);
+    } else {
+      this.internals.setFormValue(this.value);
+    }
+  }
+
+  componentWillLoad() {
+    this.internals.setFormValue('');
+  }
+
+  /**
+  * Checks if the value of the input is valid and
+  * reports the validity.
+  */
+  checkValidity(): boolean {
+    const validity = this.refs.input.validity ?? { valid: true };
+    return validity.valid;
+  }
+
+  /**
+  * The native callback function for resetting the input as part of a form.
+  */
+  formResetCallback() {
+    this.value = "";
+  }
+
+  /**
+  * The native callback function for disabling the input aa part of a form.
+  */
+  formDisabledCallback() {
+    this.disabled = true;
   }
 
   /**
   * Callback for input changes.
   */
-  _handleChangeInput(evt: InputEvent) {
+  handleChangeInput(evt: InputEvent) {
     if (this.disabled) {
       evt.stopPropagation();
       return;
     }
 
     if (this.checkValidity()) {
-      this._internals.setFormValue(this._refs.input.value ?? '');
+      this.value = this.refs.input.value;
     }
   }
 
