@@ -6,6 +6,9 @@ describe('ne-input', () => {
 
     await page.setContent('<ne-input value="Test"></ne-input>');
     const element = await page.find('ne-input');
+
+    expect(element.getAttribute('value')).toEqual('Test');
+    expect(element.textContent).toEqualText('Test');
     expect(element.getProperty('value')).toEqual('Test');
   });
 });

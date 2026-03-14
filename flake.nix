@@ -20,7 +20,13 @@
                         typescript-language-server
                         nodejs
                         bashInteractive
+                        puppeteer-cli
+                        chromium
                     ];
+                    shellHook = ''
+                        export PUPPETEER_SKIP_DOWNLOAD=true
+                        export PUPPETEER_EXECUTABLE_PATH=${pkgs.chromium}/bin/chromium
+                    '';
                 };
             });
 }

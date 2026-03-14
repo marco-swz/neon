@@ -31,6 +31,26 @@ export namespace Components {
          */
         "variant"?: 'primary' | 'ghost' | 'outline';
     }
+    interface NeDialog {
+        /**
+          * Closes the dialog.
+         */
+        "close": () => Promise<NeonDialog>;
+        /**
+          * The dialog will open if set. Can also be used to render the dialog already open.
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * Opens the dialog and returns a promise, which is resolved when the dialog closes. The promise always resolves to `null`.
+         */
+        "show": () => Promise<void>;
+        /**
+          * The text in the title of the dialog. This text gets overwritten, if the title slot is used (e.g. `<div slot="title">My Title</div>`)
+          * @default ''
+         */
+        "titleText": string;
+    }
     interface NeInput {
         "default"?: string;
         /**
@@ -69,12 +89,34 @@ export namespace Components {
         "value"?: string;
     }
 }
+export interface NeDialogCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNeDialogElement;
+}
 declare global {
     interface HTMLNeButtonElement extends Components.NeButton, HTMLStencilElement {
     }
     var HTMLNeButtonElement: {
         prototype: HTMLNeButtonElement;
         new (): HTMLNeButtonElement;
+    };
+    interface HTMLNeDialogElementEventMap {
+        "dialogOpened": NeonDialog;
+        "dialogClosed": NeonDialog;
+    }
+    interface HTMLNeDialogElement extends Components.NeDialog, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNeDialogElementEventMap>(type: K, listener: (this: HTMLNeDialogElement, ev: NeDialogCustomEvent<HTMLNeDialogElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNeDialogElementEventMap>(type: K, listener: (this: HTMLNeDialogElement, ev: NeDialogCustomEvent<HTMLNeDialogElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLNeDialogElement: {
+        prototype: HTMLNeDialogElement;
+        new (): HTMLNeDialogElement;
     };
     interface HTMLNeInputElement extends Omit<Components.NeInput, "focus">, HTMLStencilElement {
         /**
@@ -88,6 +130,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ne-button": HTMLNeButtonElement;
+        "ne-dialog": HTMLNeDialogElement;
         "ne-input": HTMLNeInputElement;
     }
 }
@@ -116,6 +159,20 @@ declare namespace LocalJSX {
           * @default 'outline'
          */
         "variant"?: 'primary' | 'ghost' | 'outline';
+    }
+    interface NeDialog {
+        "onDialogClosed"?: (event: NeDialogCustomEvent<NeonDialog>) => void;
+        "onDialogOpened"?: (event: NeDialogCustomEvent<NeonDialog>) => void;
+        /**
+          * The dialog will open if set. Can also be used to render the dialog already open.
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * The text in the title of the dialog. This text gets overwritten, if the title slot is used (e.g. `<div slot="title">My Title</div>`)
+          * @default ''
+         */
+        "titleText"?: string;
     }
     interface NeInput {
         "default"?: string;
@@ -154,6 +211,10 @@ declare namespace LocalJSX {
         "theme": 'danger' | 'warning' | 'success';
         "variant": 'primary' | 'ghost' | 'outline';
     }
+    interface NeDialogAttributes {
+        "open": boolean;
+        "titleText": string;
+    }
     interface NeInputAttributes {
         "default": string;
         "disabled": boolean;
@@ -170,6 +231,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "ne-button": Omit<NeButton, keyof NeButtonAttributes> & { [K in keyof NeButton & keyof NeButtonAttributes]?: NeButton[K] } & { [K in keyof NeButton & keyof NeButtonAttributes as `attr:${K}`]?: NeButtonAttributes[K] } & { [K in keyof NeButton & keyof NeButtonAttributes as `prop:${K}`]?: NeButton[K] };
+        "ne-dialog": Omit<NeDialog, keyof NeDialogAttributes> & { [K in keyof NeDialog & keyof NeDialogAttributes]?: NeDialog[K] } & { [K in keyof NeDialog & keyof NeDialogAttributes as `attr:${K}`]?: NeDialogAttributes[K] } & { [K in keyof NeDialog & keyof NeDialogAttributes as `prop:${K}`]?: NeDialog[K] };
         "ne-input": Omit<NeInput, keyof NeInputAttributes> & { [K in keyof NeInput & keyof NeInputAttributes]?: NeInput[K] } & { [K in keyof NeInput & keyof NeInputAttributes as `attr:${K}`]?: NeInputAttributes[K] } & { [K in keyof NeInput & keyof NeInputAttributes as `prop:${K}`]?: NeInput[K] };
     }
 }
@@ -178,6 +240,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ne-button": LocalJSX.IntrinsicElements["ne-button"] & JSXBase.HTMLAttributes<HTMLNeButtonElement>;
+            "ne-dialog": LocalJSX.IntrinsicElements["ne-dialog"] & JSXBase.HTMLAttributes<HTMLNeDialogElement>;
             "ne-input": LocalJSX.IntrinsicElements["ne-input"] & JSXBase.HTMLAttributes<HTMLNeInputElement>;
         }
     }
