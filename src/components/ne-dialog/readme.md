@@ -7,19 +7,43 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type      | Default     |
-| ------------- | ------------- | ----------- | --------- | ----------- |
-| `default`     | `default`     |             | `string`  | `undefined` |
-| `disabled`    | `disabled`    |             | `boolean` | `false`     |
-| `loading`     | `loading`     |             | `boolean` | `false`     |
-| `name`        | `name`        |             | `string`  | `undefined` |
-| `pattern`     | `pattern`     |             | `string`  | `undefined` |
-| `placeholder` | `placeholder` |             | `string`  | `undefined` |
-| `readonly`    | `readonly`    |             | `boolean` | `false`     |
-| `required`    | `required`    |             | `boolean` | `false`     |
-| `step`        | `step`        |             | `number`  | `undefined` |
-| `type`        | `type`        |             | `string`  | `undefined` |
-| `value`       | `value`       |             | `string`  | `undefined` |
+| Property    | Attribute    | Description                                                                                                                          | Type      | Default |
+| ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------- |
+| `open`      | `open`       | The dialog will open if set. Can also be used to render the dialog already open.                                                     | `boolean` | `false` |
+| `titleText` | `title-text` | The text in the title of the dialog. This text gets overwritten, if the title slot is used (e.g. `<div slot="title">My Title</div>`) | `string`  | `''`    |
+
+
+## Events
+
+| Event          | Description | Type                      |
+| -------------- | ----------- | ------------------------- |
+| `dialogClosed` |             | `CustomEvent<NeonDialog>` |
+| `dialogOpened` |             | `CustomEvent<NeonDialog>` |
+
+
+## Methods
+
+### `close() => Promise<NeonDialog>`
+
+Closes the dialog.
+
+#### Returns
+
+Type: `Promise<NeonDialog>`
+
+
+
+### `show() => Promise<void>`
+
+Opens the dialog and returns a promise,
+which is resolved when the dialog closes.
+The promise always resolves to `null`.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------
