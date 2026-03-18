@@ -1,4 +1,19 @@
 :host {
+    /**
+     * @prop --he-button-cursor: The default cursor type of the button
+     * @prop --he-button-loading-cursor: The cursor type when in `loading` state
+     * @prop --he-button-disabled-cursor: The cursor type when in `disabled` state
+     * @prop --he-button-height: The height of the button
+     * @prop --he-button-fontSize: The font size of the text
+     * @prop --he-button-width: The button width
+     * @prop --he-button-color: The text color of the button
+     * @prop --he-button-backgroundColor: The background color of the button
+     * @prop --he-button-borderWidth: The border width of the button
+     * @prop --he-button-borderColor: The border color of the button
+     * @prop --he-button-hover-backgroundColor: The background color when hovering
+     * @prop --he-button-hover-color: The text color when hovering
+     * @prop --he-button-hover-borderColor: The border color when hovering
+     */
     --ne-button-loading-cursor: default;
     --ne-button-cursor: pointer;
     --ne-button-disabled-cursor: not-allowed;
@@ -57,7 +72,8 @@
     --ne-button-hover-borderColor: var(--ne-theme-color);
 }
 
-:host([variant=primary]), :host([variant=primary][theme]) {
+:host([variant=primary]),
+:host([variant=primary][theme]) {
     --ne-button-color: var(--ne-theme-contrast);
     --ne-button-hover-color: var(--ne-theme-contrast);
     --ne-button-backgroundColor: var(--ne-theme-color);
@@ -70,6 +86,7 @@
     --ne-button-borderColor: white;
     --ne-button-hover-borderColor: var(--ne-button-hover-backgroundColor);
 }
+
 :host([variant=ghost][theme]) {
     --ne-button-color: var(--ne-theme-color);
     --ne-button-hover-color: var(--ne-theme-contrast);
@@ -193,11 +210,12 @@ a {
     0% {
         box-shadow: inset 0 0 0 0 hsl(from var(--ne-button-hover-backgroundColor) h s l);
     }
+
     50% {
         box-shadow: inset 0 0 10px 0 hsl(from var(--ne-button-hover-backgroundColor) h s calc(l - 10));
     }
+
     100% {
         box-shadow: inset 0 0 0 0 hsl(from var(--ne-button-hover-backgroundColor) h s l);
     }
 }
-

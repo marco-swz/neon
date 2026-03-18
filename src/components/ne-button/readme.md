@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A simple button with pre-definied variants, themes and additional states.
+
 ## Properties
 
 | Property   | Attribute  | Description                                                                                     | Type                                 | Default     |

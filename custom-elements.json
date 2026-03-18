@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-17T19:18:01",
+  "timestamp": "2026-03-18T13:04:38",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.43.2",
@@ -11,8 +11,13 @@
       "encapsulation": "shadow",
       "tag": "ne-button",
       "readme": "# ne-button\n\n\n",
-      "docs": "",
-      "docsTags": [],
+      "docs": "A simple button with pre-definied variants, themes and additional states.",
+      "docsTags": [
+        {
+          "name": "tag",
+          "text": "he-button"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -349,7 +354,7 @@
       "encapsulation": "shadow",
       "tag": "ne-input",
       "readme": "# ne-input\n\n\n",
-      "docs": "",
+      "docs": "A custom styled input element with additional features.",
       "docsTags": [],
       "usage": {},
       "props": [
@@ -364,7 +369,7 @@
           "mutable": false,
           "attr": "default",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "The default value set when the input is empty",
           "docsTags": [],
           "values": [
             {
@@ -387,7 +392,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Disables the input.\nForm values are not submitted.",
           "docsTags": [
             {
               "name": "default",
@@ -416,7 +421,7 @@
           "mutable": false,
           "attr": "loading",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Shows a loading animation inside the element",
           "docsTags": [
             {
               "name": "default",
@@ -445,7 +450,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "The name used in context of `<form>` elements",
           "docsTags": [],
           "values": [
             {
@@ -468,7 +473,7 @@
           "mutable": false,
           "attr": "pattern",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "The pattern used when checking the validity of the input.",
           "docsTags": [],
           "values": [
             {
@@ -491,7 +496,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "This text is shown to the user when the input is empty.\nIt is **not** used as value (use `default` for this).",
           "docsTags": [],
           "values": [
             {
@@ -514,7 +519,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Disables the input for user input, but `<form>` values are still submitted.",
           "docsTags": [
             {
               "name": "default",
@@ -543,7 +548,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Marks the input as required in context of `<form>` elements.",
           "docsTags": [
             {
               "name": "default",
@@ -572,7 +577,7 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "The step size used when `type` is set to `number`.",
           "docsTags": [],
           "values": [
             {
@@ -586,19 +591,65 @@
         },
         {
           "name": "type",
-          "type": "string",
+          "type": "\"datetime\" | \"email\" | \"hidden\" | \"month\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"time\" | \"week\"",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
+            "original": "InputType",
+            "resolved": "\"datetime\" | \"email\" | \"hidden\" | \"month\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"time\" | \"week\"",
+            "references": {
+              "InputType": {
+                "location": "global",
+                "id": "global::InputType"
+              }
+            }
           },
           "mutable": false,
           "attr": "type",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Sets the input type (same as native `<input>` element, but less options).",
           "docsTags": [],
           "values": [
             {
+              "value": "datetime",
+              "type": "string"
+            },
+            {
+              "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "hidden",
+              "type": "string"
+            },
+            {
+              "value": "month",
+              "type": "string"
+            },
+            {
+              "value": "number",
+              "type": "string"
+            },
+            {
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "value": "search",
+              "type": "string"
+            },
+            {
+              "value": "tel",
+              "type": "string"
+            },
+            {
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "value": "time",
+              "type": "string"
+            },
+            {
+              "value": "week",
               "type": "string"
             }
           ],
@@ -618,14 +669,20 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "",
-          "docsTags": [],
+          "docs": "The value of the input.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "''"
+            }
+          ],
+          "default": "''",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -655,7 +712,7 @@
           },
           "signature": "focus() => Promise<NeonInput>",
           "parameters": [],
-          "docs": "Sets the focus to the input.",
+          "docs": "Focuses the input.",
           "docsTags": []
         },
         {

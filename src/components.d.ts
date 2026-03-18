@@ -6,6 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    /**
+     * A simple button with pre-definied variants, themes and additional states.
+     * @tag he-button
+     */
     interface NeButton {
         /**
           * Disables the button if set. Clicks will no longer fire events.
@@ -51,28 +55,47 @@ export namespace Components {
          */
         "titleText": string;
     }
+    /**
+     * A custom styled input element with additional features.
+     */
     interface NeInput {
+        /**
+          * The default value set when the input is empty
+         */
         "default"?: string;
         /**
+          * Disables the input. Form values are not submitted.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Sets the focus to the input.
+          * Focuses the input.
          */
         "focus": () => Promise<NeonInput>;
         /**
+          * Shows a loading animation inside the element
           * @default false
          */
         "loading": boolean;
+        /**
+          * The name used in context of `<form>` elements
+         */
         "name"?: string;
+        /**
+          * The pattern used when checking the validity of the input.
+         */
         "pattern"?: string;
+        /**
+          * This text is shown to the user when the input is empty. It is **not** used as value (use `default` for this).
+         */
         "placeholder"?: string;
         /**
+          * Disables the input for user input, but `<form>` values are still submitted.
           * @default false
          */
         "readonly": boolean;
         /**
+          * Marks the input as required in context of `<form>` elements.
           * @default false
          */
         "required": boolean;
@@ -84,9 +107,19 @@ export namespace Components {
           * Selects (highlights) the input text.
          */
         "select": () => Promise<NeonInput>;
+        /**
+          * The step size used when `type` is set to `number`.
+         */
         "step"?: number;
-        "type"?: string;
-        "value"?: string;
+        /**
+          * Sets the input type (same as native `<input>` element, but less options).
+         */
+        "type"?: InputType;
+        /**
+          * The value of the input.
+          * @default ''
+         */
+        "value": string;
     }
 }
 export interface NeDialogCustomEvent<T> extends CustomEvent<T> {
@@ -94,6 +127,10 @@ export interface NeDialogCustomEvent<T> extends CustomEvent<T> {
     target: HTMLNeDialogElement;
 }
 declare global {
+    /**
+     * A simple button with pre-definied variants, themes and additional states.
+     * @tag he-button
+     */
     interface HTMLNeButtonElement extends Components.NeButton, HTMLStencilElement {
     }
     var HTMLNeButtonElement: {
@@ -118,9 +155,12 @@ declare global {
         prototype: HTMLNeDialogElement;
         new (): HTMLNeDialogElement;
     };
+    /**
+     * A custom styled input element with additional features.
+     */
     interface HTMLNeInputElement extends Omit<Components.NeInput, "focus">, HTMLStencilElement {
         /**
-          * Sets the focus to the input.
+          * Focuses the input.
          */
         "focus": () => Promise<NeonInput>;
     }
@@ -135,6 +175,10 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * A simple button with pre-definied variants, themes and additional states.
+     * @tag he-button
+     */
     interface NeButton {
         /**
           * Disables the button if set. Clicks will no longer fire events.
@@ -174,9 +218,16 @@ declare namespace LocalJSX {
          */
         "titleText"?: string;
     }
+    /**
+     * A custom styled input element with additional features.
+     */
     interface NeInput {
+        /**
+          * The default value set when the input is empty
+         */
         "default"?: string;
         /**
+          * Disables the input. Form values are not submitted.
           * @default false
          */
         "disabled"?: boolean;
@@ -185,22 +236,44 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
+          * Shows a loading animation inside the element
           * @default false
          */
         "loading"?: boolean;
+        /**
+          * The name used in context of `<form>` elements
+         */
         "name"?: string;
+        /**
+          * The pattern used when checking the validity of the input.
+         */
         "pattern"?: string;
+        /**
+          * This text is shown to the user when the input is empty. It is **not** used as value (use `default` for this).
+         */
         "placeholder"?: string;
         /**
+          * Disables the input for user input, but `<form>` values are still submitted.
           * @default false
          */
         "readonly"?: boolean;
         /**
+          * Marks the input as required in context of `<form>` elements.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * The step size used when `type` is set to `number`.
+         */
         "step"?: number;
-        "type"?: string;
+        /**
+          * Sets the input type (same as native `<input>` element, but less options).
+         */
+        "type"?: InputType;
+        /**
+          * The value of the input.
+          * @default ''
+         */
         "value"?: string;
     }
 
@@ -223,7 +296,7 @@ declare namespace LocalJSX {
         "placeholder": string;
         "required": boolean;
         "readonly": boolean;
-        "type": string;
+        "type": InputType;
         "value": string;
         "step": number;
         "pattern": string;
@@ -239,8 +312,15 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * A simple button with pre-definied variants, themes and additional states.
+             * @tag he-button
+             */
             "ne-button": LocalJSX.IntrinsicElements["ne-button"] & JSXBase.HTMLAttributes<HTMLNeButtonElement>;
             "ne-dialog": LocalJSX.IntrinsicElements["ne-dialog"] & JSXBase.HTMLAttributes<HTMLNeDialogElement>;
+            /**
+             * A custom styled input element with additional features.
+             */
             "ne-input": LocalJSX.IntrinsicElements["ne-input"] & JSXBase.HTMLAttributes<HTMLNeInputElement>;
         }
     }

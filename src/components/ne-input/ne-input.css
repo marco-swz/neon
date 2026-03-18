@@ -1,147 +1,158 @@
 :host {
-  --ne-input-borderColor: lightgrey;
-  --ne-input-borderWidth: 1px;
-  --ne-input-borderStyle: solid;
-  --ne-input-color: black;
-  --ne-input-fontSize: 14px;
-  --ne-input-backgroundColor: whitesmoke;
-  --ne-input-hover-borderColor: grey;
-  --ne-input-loading-spinner-color: black;
-  --ne-input-padding: 0.3rem 0.4rem;
+    /**
+     * @prop --ne-input-borderColor: The border color
+     * @prop --ne-input-borderWidth: The border width
+     * @prop --ne-input-borderStyle: The border style
+     * @prop --ne-input-color: The text color
+     * @prop --ne-input-fontSize: The text font size
+     * @prop --ne-input-backgroundColor: The background color
+     * @prop --ne-input-hover-borderColor: The border color when hovering over with the mouse
+     * @prop --ne-input-loading-spinner-color: The color of the loading spinner
+     * @prop --ne-input-padding: The padding around the input text
+     */
+    --ne-input-borderColor: lightgrey;
+    --ne-input-borderWidth: 1px;
+    --ne-input-borderStyle: solid;
+    --ne-input-color: black;
+    --ne-input-fontSize: 14px;
+    --ne-input-backgroundColor: whitesmoke;
+    --ne-input-hover-borderColor: grey;
+    --ne-input-loading-spinner-color: black;
+    --ne-input-padding: 0.3rem 0.4rem;
 
-  display: inline-block;
-  position: relative;
-  border-radius: 3px;
-  background-color: var(--ne-input-backgroundColor);
-  width: 100%;
-  height: 1.6rem;
-  font-size: var(--ne-input-fontSize);
-  border-style: var(--ne-input-borderStyle);
-  border-color: var(--ne-input-borderColor);
-  border-width: var(--ne-input-borderWidth);
-  color: var(--ne-input-color);
-  cursor: text;
+    display: inline-block;
+    position: relative;
+    border-radius: 3px;
+    background-color: var(--ne-input-backgroundColor);
+    width: 100%;
+    height: 1.6rem;
+    font-size: var(--ne-input-fontSize);
+    border-style: var(--ne-input-borderStyle);
+    border-color: var(--ne-input-borderColor);
+    border-width: var(--ne-input-borderWidth);
+    color: var(--ne-input-color);
+    cursor: text;
 }
 
 #cont-inp {
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
 }
 
 :host(:hover),
 :host([variant="underline"]:hover) {
-  transition:
-    border-color 0.2s;
-  border-color: var(--ne-input-hover-borderColor);
+    transition:
+        border-color 0.2s;
+    border-color: var(--ne-input-hover-borderColor);
 }
 
 :host([variant="underline"]) {
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0;
-  border-bottom-color: var(--ne-input-borderColor);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    border-bottom-color: var(--ne-input-borderColor);
 }
 
 :host([type="hidden"]) {
-  display: none;
+    display: none;
 }
 
 :host([invalid]) {
-  transition:
-    border-color 0.2s;
-  border-color: indianred;
+    transition:
+        border-color 0.2s;
+    border-color: indianred;
 }
 
 :host([invalid]:hover) {
-  border-color: indianred;
+    border-color: indianred;
 }
 
 :host([loading])::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto 10px auto auto;
-  border: 3px solid darkgrey;
-  border-radius: 50%;
-  border-bottom-color: var(--ne-input-loading-spinner-color);
-  animation: button-loading-spinner 1s ease infinite;
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 10px auto auto;
+    border: 3px solid darkgrey;
+    border-radius: 50%;
+    border-bottom-color: var(--ne-input-loading-spinner-color);
+    animation: button-loading-spinner 1s ease infinite;
 }
 
 :host([ok]) {
-  border-color: green;
+    border-color: green;
 }
 
 :host([ok])::after {
-  content: "✔";
-  position: absolute;
-  width: 10px;
-  height: 15px;
-  color: green;
-  top: 1px;
-  right: 8px;
-  font-weight: 700;
+    content: "✔";
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    color: green;
+    top: 1px;
+    right: 8px;
+    font-weight: 700;
 }
 
 #inp-main {
-  font-family: inherit;
-  outline: none;
-  background-color: inherit;
-  width: 100%;
-  font-size: inherit;
-  border-radius: inherit;
-  border: none;
-  padding: var(--ne-input-padding);
-  cursor: inherit;
-  color: inherit;
+    font-family: inherit;
+    outline: none;
+    background-color: inherit;
+    width: 100%;
+    font-size: inherit;
+    border-radius: inherit;
+    border: none;
+    padding: var(--ne-input-padding);
+    cursor: inherit;
+    color: inherit;
 }
 
 :host([readonly]:hover),
 :host([disabled]:hover) {
-  border-color: var(--ne-input-borderColor);
+    border-color: var(--ne-input-borderColor);
 }
 
 :host([readonly]),
 :host([disabled]) {
-  cursor: default;
-  color: hsl(from var(--ne-input-color) h s calc(l + 50))
+    cursor: default;
+    color: hsl(from var(--ne-input-color) h s calc(l + 50))
 }
 
 div[slot=content] {
-  max-height: 200px;
+    max-height: 200px;
 }
 
 #cont-options {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 ne-popover {
-  --ne-popover-borderRadius: 5px;
+    --ne-popover-borderRadius: 5px;
 }
 
 ::slotted(*) {
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 3px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 ::slotted(*:hover) {
-  background-color: hsl(from white h s calc(l - 10));
+    background-color: hsl(from white h s calc(l - 10));
 }
 
 @keyframes button-loading-spinner {
-  from {
-    transform: rotate(0turn);
-  }
+    from {
+        transform: rotate(0turn);
+    }
 
-  to {
-    transform: rotate(1turn);
-  }
+    to {
+        transform: rotate(1turn);
+    }
 }

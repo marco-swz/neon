@@ -3,9 +3,13 @@ const config = {
     core: {
         disableTelemetry: true,
     },
-    addons: ['@storybook/addon-links', '@storybook/addon-docs'],
+    addons: [
+        '@storybook/addon-links',
+        '@storybook/addon-docs',
+        "@storybook/addon-vitest"
+    ],
     framework: {
-        name: '@stencil/storybook-plugin',
+        name: '@storybook/web-components-vite',
     },
 };
 

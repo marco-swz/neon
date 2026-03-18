@@ -1,5 +1,10 @@
 import { Component, Prop, h } from '@stencil/core';
 
+/**
+ * A simple button with pre-definied variants, themes and additional states.
+ *
+ * @tag he-button
+ */
 @Component({
     tag: 'ne-button',
     styleUrl: 'ne-button.css',
@@ -50,7 +55,11 @@ export class NeonButton {
         );
     }
 
-    private handleClickButton() {
+    private handleClickButton(evt: Event) {
+        if (this.disabled || this.loading) {
+            evt.stopPropagation();
+            return;
+        }
 
     }
 }

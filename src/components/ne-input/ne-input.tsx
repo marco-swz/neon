@@ -1,5 +1,11 @@
 import { Component, Prop, h, AttachInternals, Watch, Method } from '@stencil/core';
 
+type InputType = 'email' | 'hidden' | 'month' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'week' | 'datetime';
+
+/**
+ * A custom styled input element with additional features.
+ *
+ */
 @Component({
     tag: 'ne-input',
     styleUrl: 'ne-input.css',
@@ -15,36 +21,71 @@ export class NeonInput {
         input: null
     };
 
+    /**
+     * The default value set when the input is empty
+     */
     @Prop({ reflect: true })
     default?: string;
 
+    /**
+     * Disables the input.
+     * Form values are not submitted.
+     */
     @Prop({ reflect: true })
     disabled: boolean = false;
 
+    /**
+     * Shows a loading animation inside the element
+     */
     @Prop({ reflect: true })
     loading: boolean = false;
 
+    /**
+     * The name used in context of `<form>` elements
+     */
     @Prop({ reflect: true })
     name?: string;
 
+    /**
+     * This text is shown to the user when the input is empty.
+     * It is **not** used as value (use `default` for this).
+     */
     @Prop({ reflect: true })
     placeholder?: string;
 
+    /**
+     * Marks the input as required in context of `<form>` elements.
+     */
     @Prop({ reflect: true })
     required: boolean = false;
 
+    /**
+     * Disables the input for user input, but `<form>` values are still submitted.
+     */
     @Prop({ reflect: true })
     readonly: boolean = false;
 
+    /**
+     * Sets the input type (same as native `<input>` element, but less options).
+     */
     @Prop({ reflect: true })
-    type?: string;
+    type?: InputType;
 
+    /**
+     * The value of the input.
+     */
     @Prop({ reflect: true, mutable: true })
-    value?: string;
+    value: string = '';
 
+    /**
+     * The step size used when `type` is set to `number`.
+     */
     @Prop({ reflect: true })
     step?: number;
 
+    /**
+     * The pattern used when checking the validity of the input.
+     */
     @Prop({ reflect: true })
     pattern?: string;
 
@@ -68,7 +109,7 @@ export class NeonInput {
     }
 
     /**
-    * Sets the focus to the input.
+    * Focuses the input.
     */
     @Method()
     async focus(): Promise<NeonInput> {
