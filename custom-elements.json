@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-18T13:04:38",
+  "timestamp": "2026-03-20T18:50:22",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.43.2",
@@ -174,7 +174,73 @@
       "methods": [],
       "events": [],
       "listeners": [],
-      "styles": [],
+      "styles": [
+        {
+          "name": "--he-button-backgroundColor",
+          "annotation": "prop",
+          "docs": "The background color of the button"
+        },
+        {
+          "name": "--he-button-borderColor",
+          "annotation": "prop",
+          "docs": "The border color of the button"
+        },
+        {
+          "name": "--he-button-borderWidth",
+          "annotation": "prop",
+          "docs": "The border width of the button"
+        },
+        {
+          "name": "--he-button-color",
+          "annotation": "prop",
+          "docs": "The text color of the button"
+        },
+        {
+          "name": "--he-button-cursor",
+          "annotation": "prop",
+          "docs": "The default cursor type of the button"
+        },
+        {
+          "name": "--he-button-disabled-cursor",
+          "annotation": "prop",
+          "docs": "The cursor type when in `disabled` state"
+        },
+        {
+          "name": "--he-button-fontSize",
+          "annotation": "prop",
+          "docs": "The font size of the text"
+        },
+        {
+          "name": "--he-button-height",
+          "annotation": "prop",
+          "docs": "The height of the button"
+        },
+        {
+          "name": "--he-button-hover-backgroundColor",
+          "annotation": "prop",
+          "docs": "The background color when hovering"
+        },
+        {
+          "name": "--he-button-hover-borderColor",
+          "annotation": "prop",
+          "docs": "The border color when hovering"
+        },
+        {
+          "name": "--he-button-hover-color",
+          "annotation": "prop",
+          "docs": "The text color when hovering"
+        },
+        {
+          "name": "--he-button-loading-cursor",
+          "annotation": "prop",
+          "docs": "The cursor type when in `loading` state"
+        },
+        {
+          "name": "--he-button-width",
+          "annotation": "prop",
+          "docs": "The button width"
+        }
+      ],
       "slots": [],
       "parts": [],
       "states": [],
@@ -434,7 +500,7 @@
               "type": "boolean"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -770,7 +836,53 @@
       ],
       "events": [],
       "listeners": [],
-      "styles": [],
+      "styles": [
+        {
+          "name": "--ne-input-backgroundColor",
+          "annotation": "prop",
+          "docs": "The background color"
+        },
+        {
+          "name": "--ne-input-borderColor",
+          "annotation": "prop",
+          "docs": "The border color"
+        },
+        {
+          "name": "--ne-input-borderStyle",
+          "annotation": "prop",
+          "docs": "The border style"
+        },
+        {
+          "name": "--ne-input-borderWidth",
+          "annotation": "prop",
+          "docs": "The border width"
+        },
+        {
+          "name": "--ne-input-color",
+          "annotation": "prop",
+          "docs": "The text color"
+        },
+        {
+          "name": "--ne-input-fontSize",
+          "annotation": "prop",
+          "docs": "The text font size"
+        },
+        {
+          "name": "--ne-input-hover-borderColor",
+          "annotation": "prop",
+          "docs": "The border color when hovering over with the mouse"
+        },
+        {
+          "name": "--ne-input-loading-spinner-color",
+          "annotation": "prop",
+          "docs": "The color of the loading spinner"
+        },
+        {
+          "name": "--ne-input-padding",
+          "annotation": "prop",
+          "docs": "The padding around the input text"
+        }
+      ],
       "slots": [],
       "parts": [],
       "states": [],

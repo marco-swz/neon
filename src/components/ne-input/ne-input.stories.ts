@@ -42,21 +42,24 @@ export const Default: Story = {
         $inp.name = 'input';
 
         await expect($inp.value).toBe('');
-        let data = new FormData($form);
-        await expect(data.get('input')).toBe('');
+        await expect($form).toHaveFormValues({'input': ''});
 
         $inp.value = 'Test';
         await expect($inp.value).toBe('Test');
-        await expect(data.get('input')).toBe('Test');
+        await expect($form).toHaveFormValues({'input': 'Test'});
 
         $inp.value = '';
         $inp.name = null;
+
+        await expect($form).toHaveFormValues({});
     },
 };
 
 export const Disabled: Story = {
     args: {
         disabled: true,
+        value: 'test',
+        name: 'input',
     },
     render: (props) => {
         const attrs = Object.entries(props)
@@ -71,19 +74,14 @@ export const Disabled: Story = {
         const $inp = canvas.getByTestId<NeonInput & HTMLElement>('elem');
         const $form = canvas.getByTestId<HTMLFormElement>('form');
 
-        $inp.disabled = false;
-        $inp.name = 'input';
-        $inp.value = 'Hello';
         $inp.disabled = true;
 
-        await expect($inp.value).toBe('Hello');
-        let data = new FormData($form);
-        await expect(data.has('input')).toBe(false);
+        await expect($inp.value).toBe('test');
+        await expect($form).toHaveFormValues({});
 
         await userEvent.type($inp, 'World');
-        await expect($inp.value).toBe('Hello');
-        data = new FormData($form);
-        await expect(data.has('input')).toBe(false);
+        await expect($inp.value).toBe('test');
+        await expect($form).toHaveFormValues({});
 
         $inp.name = null;
         $inp.value = 'Hello';

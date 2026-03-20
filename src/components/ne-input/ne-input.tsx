@@ -24,69 +24,69 @@ export class NeonInput {
     /**
      * The default value set when the input is empty
      */
-    @Prop({ reflect: true })
+    @Prop()
     default?: string;
 
     /**
      * Disables the input.
      * Form values are not submitted.
      */
-    @Prop({ reflect: true })
+    @Prop({ mutable: true })
     disabled: boolean = false;
 
     /**
      * Shows a loading animation inside the element
      */
-    @Prop({ reflect: true })
-    loading: boolean = false;
+    @Prop()
+    loading?: boolean = false;
 
     /**
      * The name used in context of `<form>` elements
      */
-    @Prop({ reflect: true })
+    @Prop()
     name?: string;
 
     /**
      * This text is shown to the user when the input is empty.
      * It is **not** used as value (use `default` for this).
      */
-    @Prop({ reflect: true })
+    @Prop()
     placeholder?: string;
 
     /**
      * Marks the input as required in context of `<form>` elements.
      */
-    @Prop({ reflect: true })
+    @Prop()
     required: boolean = false;
 
     /**
      * Disables the input for user input, but `<form>` values are still submitted.
      */
-    @Prop({ reflect: true })
+    @Prop()
     readonly: boolean = false;
 
     /**
      * Sets the input type (same as native `<input>` element, but less options).
      */
-    @Prop({ reflect: true })
+    @Prop()
     type?: InputType;
 
     /**
      * The value of the input.
      */
-    @Prop({ reflect: true, mutable: true })
+    @Prop({ mutable: true })
     value: string = '';
 
     /**
      * The step size used when `type` is set to `number`.
      */
-    @Prop({ reflect: true })
+    @Prop()
     step?: number;
 
     /**
      * The pattern used when checking the validity of the input.
      */
-    @Prop({ reflect: true })
+    @Prop()
     pattern?: string;
 
     render() {
@@ -149,6 +149,17 @@ export class NeonInput {
         }
     }
 
+    @Watch('name')
+    protected watchName(newValue?: string) {
+        if (!this.disabled) {
+            if (newValue) {
+                this.internals.setFormValue(this.value);
+            } else {
+                this.internals.setFormValue(null);
+            }
+        }
+    }
+
     @Watch('disabled')
     protected watchDisabled(newValue: string) {
         if (newValue != null) {
@@ -159,7 +170,7 @@ export class NeonInput {
     }
 
     componentWillLoad() {
-        this.internals.setFormValue('');
+        this.internals.setFormValue(this.value);
     }
 
     /**

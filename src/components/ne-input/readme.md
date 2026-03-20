@@ -59,6 +59,21 @@ Type: `Promise<NeonInput>`
 
 
 
+## CSS Custom Properties
+
+| Name                               | Description                                        |
+| ---------------------------------- | -------------------------------------------------- |
+| `--ne-input-backgroundColor`       | The background color                               |
+| `--ne-input-borderColor`           | The border color                                   |
+| `--ne-input-borderStyle`           | The border style                                   |
+| `--ne-input-borderWidth`           | The border width                                   |
+| `--ne-input-color`                 | The text color                                     |
+| `--ne-input-fontSize`              | The text font size                                 |
+| `--ne-input-hover-borderColor`     | The border color when hovering over with the mouse |
+| `--ne-input-loading-spinner-color` | The color of the loading spinner                   |
+| `--ne-input-padding`               | The padding around the input text                  |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

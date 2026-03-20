@@ -76,7 +76,7 @@ export namespace Components {
           * Shows a loading animation inside the element
           * @default false
          */
-        "loading": boolean;
+        "loading"?: boolean;
         /**
           * The name used in context of `<form>` elements
          */
