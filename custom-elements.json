@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-20T18:50:22",
+  "timestamp": "2026-03-21T12:58:26",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.43.2",
@@ -434,7 +434,7 @@
           },
           "mutable": false,
           "attr": "default",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The default value set when the input is empty",
           "docsTags": [],
           "values": [
@@ -455,9 +455,9 @@
             "resolved": "boolean",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "disabled",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Disables the input.\nForm values are not submitted.",
           "docsTags": [
             {
@@ -486,7 +486,7 @@
           },
           "mutable": false,
           "attr": "loading",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Shows a loading animation inside the element",
           "docsTags": [
             {
@@ -515,7 +515,7 @@
           },
           "mutable": false,
           "attr": "name",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The name used in context of `<form>` elements",
           "docsTags": [],
           "values": [
@@ -538,7 +538,7 @@
           },
           "mutable": false,
           "attr": "pattern",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The pattern used when checking the validity of the input.",
           "docsTags": [],
           "values": [
@@ -561,7 +561,7 @@
           },
           "mutable": false,
           "attr": "placeholder",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "This text is shown to the user when the input is empty.\nIt is **not** used as value (use `default` for this).",
           "docsTags": [],
           "values": [
@@ -584,7 +584,7 @@
           },
           "mutable": false,
           "attr": "readonly",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Disables the input for user input, but `<form>` values are still submitted.",
           "docsTags": [
             {
@@ -613,7 +613,7 @@
           },
           "mutable": false,
           "attr": "required",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Marks the input as required in context of `<form>` elements.",
           "docsTags": [
             {
@@ -642,7 +642,7 @@
           },
           "mutable": false,
           "attr": "step",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The step size used when `type` is set to `number`.",
           "docsTags": [],
           "values": [
@@ -670,7 +670,7 @@
           },
           "mutable": false,
           "attr": "type",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Sets the input type (same as native `<input>` element, but less options).",
           "docsTags": [],
           "values": [
@@ -734,7 +734,7 @@
           },
           "mutable": true,
           "attr": "value",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The value of the input.",
           "docsTags": [
             {

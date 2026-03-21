@@ -13,7 +13,12 @@ type InputType = 'email' | 'hidden' | 'month' | 'number' | 'password' | 'search'
     formAssociated: true,
 })
 export class NeonInput {
-    @AttachInternals() internals: ElementInternals;
+    @AttachInternals({
+        states: {
+            disabled: false,
+            loading: false,
+        }
+    }) internals: ElementInternals;
 
     private refs: {
         input: HTMLInputElement
@@ -164,8 +169,25 @@ export class NeonInput {
     protected watchDisabled(newValue: string) {
         if (newValue != null) {
             this.internals.setFormValue(null);
+            // @ts-ignore
+            this.internals.states.add('disabled');
         } else {
             this.internals.setFormValue(this.value);
+            // @ts-ignore
+            this.internals.states.remove('disabled');
+        }
+    }
+
+    @Watch('loading')
+    protected watchLoading(newValue: string) {
+        if (newValue != null) {
+            this.internals.setFormValue(null);
+            // @ts-ignore
+            this.internals.states.add('loading');
+        } else {
+            this.internals.setFormValue(this.value);
+            // @ts-ignore
+            this.internals.states.remove('loading');
         }
     }
 

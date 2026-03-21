@@ -4,13 +4,18 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         flake-utils.url = "github:numtide/flake-utils";
+        playwright.url = "github:pietdevries94/playwright-web-flake";
     };
 
-    outputs = inputs@{ self, nixpkgs, flake-utils, ... }:
+    outputs = inputs@{ self, nixpkgs, flake-utils, playwright, ... }:
         flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
             let
+                overlay = final: prev: {
+                    inherit (playwright.packages.${system}) playwright-test playwright-driver;
+                };
                 pkgs = import nixpkgs {
                     inherit system;
+                    overlays = [ overlay ];
                 };
 
             in rec {
@@ -20,12 +25,11 @@
                         typescript-language-server
                         nodejs
                         bashInteractive
-                        puppeteer-cli
-                        chromium
+                        playwright-test
                     ];
                     shellHook = ''
-                        export PUPPETEER_SKIP_DOWNLOAD=true
-                        export PUPPETEER_EXECUTABLE_PATH=${pkgs.chromium}/bin/chromium
+                        export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+                        export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
                     '';
                 };
             });

@@ -59,17 +59,17 @@
     display: none;
 }
 
-:host([invalid=true]) {
+:host(:state(invalid)) {
     transition:
         border-color 0.2s;
     border-color: indianred;
 }
 
-:host([invalid=true]:hover) {
+:host(:state(invalid):hover) {
     border-color: indianred;
 }
 
-:host([loading=true])::after {
+:host(:state(loading))::after {
     content: "";
     position: absolute;
     width: 12px;
@@ -113,13 +113,13 @@
     color: inherit;
 }
 
-:host([readonly=true]:hover),
-:host([disabled=true]:hover) {
+:host(:state(readonly):hover),
+:host(:state(disabled):hover) {
     border-color: var(--ne-input-borderColor);
 }
 
-:host([readonly=true]),
-:host([disabled=true]) {
+:host(:state(readonly)),
+:host(:state(disabled)) {
     cursor: default;
     color: hsl(from var(--ne-input-color) h s calc(l + 50))
 }

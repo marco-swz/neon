@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <script src="../../../dist/esm/neon.js" type="module"></script>
+</head>
+
+<body>
+    <ne-button id="test-rendering">Text</ne-button>
+    <ne-button id="test-loading" count="0" onclick="let n=Number.parseInt(this.getAttribute('count'));this.setAttribute('count', ++n);">Click</ne-button>
+    <ne-button id="test-disabled" count="0" onclick="let m=Number.parseInt(this.getAttribute('count'));this.setAttribute('count', ++m);">Click</ne-button>
+    <ne-button id="test-href" href="http://localhost:8080/dummy">Click</ne-button>
+</body>
+
+</html>
