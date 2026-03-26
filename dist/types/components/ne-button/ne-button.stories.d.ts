@@ -1,0 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { NeonButton } from './ne-button';
+declare const meta: Meta<NeonButton>;
+export default meta;
+type Story = StoryObj<NeonButton>;
+export declare const Default: Story;
+export declare const Disabled: Story;
+export declare const Loading: Story;
+export declare const Variant: Story;
+export declare const Link: Story;

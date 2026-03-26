@@ -1,0 +1,221 @@
+:host {
+    /**
+     * @prop --he-button-cursor: The default cursor type of the button
+     * @prop --he-button-loading-cursor: The cursor type when in `loading` state
+     * @prop --he-button-disabled-cursor: The cursor type when in `disabled` state
+     * @prop --he-button-height: The height of the button
+     * @prop --he-button-fontSize: The font size of the text
+     * @prop --he-button-width: The button width
+     * @prop --he-button-color: The text color of the button
+     * @prop --he-button-backgroundColor: The background color of the button
+     * @prop --he-button-borderWidth: The border width of the button
+     * @prop --he-button-borderColor: The border color of the button
+     * @prop --he-button-hover-backgroundColor: The background color when hovering
+     * @prop --he-button-hover-color: The text color when hovering
+     * @prop --he-button-hover-borderColor: The border color when hovering
+     */
+    --ne-button-loading-cursor: default;
+    --ne-button-cursor: pointer;
+    --ne-button-disabled-cursor: not-allowed;
+    --ne-button-borderWidth: 0.1rem;
+    --ne-button-fontSize: 14px;
+    --ne-button-height: 35px;
+    --ne-button-width: fit-content;
+
+    --ne-button-color: black;
+    --ne-button-backgroundColor: white;
+    --ne-button-hover-backgroundColor: hsl(240 4.8% 95.9%);
+    --ne-button-hover-color: black;
+    --ne-button-borderColor: hsl(240 4.9% 83.9%);
+    --ne-button-hover-borderColor: var(--ne-button-borderColor);
+
+    /** These vars are use for the theme styling and are private for now **/
+    --ne-theme-color: var(--ne-accent-color, steelblue);
+    --ne-theme-bright1-color: hsl(from var(--ne-theme-color) h s calc(l + 10));
+    --ne-theme-contrast: white;
+
+    display: inline-block;
+    text-wrap: nowrap;
+    border-radius: 3px;
+    outline-style: none;
+    box-shadow: none !important;
+    width: var(--ne-button-width);
+    min-width: var(--ne-button-minWidth);
+    font-size: var(--ne-button-fontSize);
+}
+
+:host([theme=danger]) {
+    --ne-theme-color: hsl(0 72.2% 50.6%);
+    --ne-theme-bright1-color: hsl(from var(--ne-theme-color) h s calc(l + 10));
+    --ne-theme-contrast: white;
+}
+
+:host([theme=warning]) {
+    --ne-theme-color: hsl(32.1 94.6% 43.7%);
+    --ne-theme-bright1-color: hsl(from var(--ne-theme-color) h s calc(l + 10));
+    --ne-theme-contrast: white;
+}
+
+:host([theme=success]) {
+    --ne-theme-color: hsl(142.1 76.2% 36.3%);
+    --ne-theme-bright1-color: hsl(from var(--ne-theme-color) h s calc(l + 10));
+    --ne-theme-contrast: white;
+}
+
+:host([theme][variant]),
+:host([theme]) {
+    --ne-button-color: var(--ne-theme-color);
+    --ne-button-hover-color: var(--ne-theme-contrast);
+    --ne-button-backgroundColor: var(--ne-theme-contrast);
+    --ne-button-hover-backgroundColor: var(--ne-theme-color);
+    --ne-button-borderColor: var(--ne-theme-color);
+    --ne-button-hover-borderColor: var(--ne-theme-color);
+}
+
+:host([variant=primary]),
+:host([variant=primary][theme]) {
+    --ne-button-color: var(--ne-theme-contrast);
+    --ne-button-hover-color: var(--ne-theme-contrast);
+    --ne-button-backgroundColor: var(--ne-theme-color);
+    --ne-button-hover-backgroundColor: var(--ne-theme-bright1-color);
+    --ne-button-borderColor: var(--ne-theme-color);
+    --ne-button-hover-borderColor: var(--ne-theme-bright1-color);
+}
+
+:host([variant=ghost]) {
+    --ne-button-borderColor: white;
+    --ne-button-hover-borderColor: var(--ne-button-hover-backgroundColor);
+}
+
+:host([variant=ghost][theme]) {
+    --ne-button-color: var(--ne-theme-color);
+    --ne-button-hover-color: var(--ne-theme-contrast);
+    --ne-button-backgroundColor: var(--ne-theme-contrast);
+    --ne-button-hover-backgroundColor: var(--ne-theme-color);
+    --ne-button-borderColor: var(--ne-theme-contrast);
+    --ne-button-hover-borderColor: var(--ne-theme-color);
+}
+
+a {
+    width: inherit;
+    cursor: inherit;
+    padding: inherit;
+    border-radius: inherit;
+    outline-style: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    min-width: inherit;
+}
+
+#ne-button {
+    position: relative;
+    border-radius: inherit;
+    padding: inherit;
+    vertical-align: middle;
+    text-align: center;
+    font-size: inherit;
+    background-color: var(--ne-button-backgroundColor);
+    outline-style: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    cursor: inherit;
+    color: var(--ne-button-color);
+    height: var(--ne-button-height);
+    border-width: var(--ne-button-borderWidth);
+    border-style: solid;
+    border-color: var(--ne-button-borderColor);
+    padding: 0px 10px;
+    font-weight: 600;
+    width: inherit;
+    overflow: hidden;
+    min-width: inherit;
+}
+
+:host([disabled]) {
+    pointer-events: none;
+}
+
+:host([disabled]) #ne-button {
+    opacity: 0.5;
+    cursor: var(--ne-button-disabled-cursor);
+}
+
+:host(:not([loading]):not([disabled]):hover) #ne-button {
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+    background-color: var(--ne-button-hover-backgroundColor);
+    border-color: var(--ne-button-hover-borderColor);
+    cursor: var(--ne-button-cursor);
+    color: var(--ne-button-hover-color);
+}
+
+:host(:not([loading]):not([disabled]):active) #ne-button {
+    animation: inset-anim 0.15s 1 ease-in-out;
+}
+
+:host([loading]) {
+    pointer-events: none;
+}
+
+:host([loading]) #ne-button {
+    opacity: 0.5;
+    cursor: var(--ne-button-loading-cursor);
+}
+
+:host([loading]) #ne-button::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: var(--ne-button-spinner-color, black);
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+:host([ok]) #ne-button::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-bottom-color: var(--ne-button-spinner-color, black);
+    border-right-color: var(--ne-button-spinner-color, black);
+    transform: rotate(45deg);
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes inset-anim {
+    0% {
+        box-shadow: inset 0 0 0 0 hsl(from var(--ne-button-hover-backgroundColor) h s l);
+    }
+
+    50% {
+        box-shadow: inset 0 0 10px 0 hsl(from var(--ne-button-hover-backgroundColor) h s calc(l - 10));
+    }
+
+    100% {
+        box-shadow: inset 0 0 0 0 hsl(from var(--ne-button-hover-backgroundColor) h s l);
+    }
+}

@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-21T12:58:26",
+  "timestamp": "2026-03-26T18:03:33",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.43.2",
+    "version": "4.43.3",
     "typescriptVersion": "5.8.3"
   },
   "components": [
@@ -885,7 +885,18 @@
       ],
       "slots": [],
       "parts": [],
-      "states": [],
+      "states": [
+        {
+          "name": "disabled",
+          "initialValue": false,
+          "docs": ""
+        },
+        {
+          "name": "loading",
+          "initialValue": false,
+          "docs": ""
+        }
+      ],
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {}

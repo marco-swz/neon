@@ -59,6 +59,14 @@ Type: `Promise<NeonInput>`
 
 
 
+## Custom States
+
+| State              | Initial Value | Description |
+| ------------------ | ------------- | ----------- |
+| `:state(disabled)` | `false`       |             |
+| `:state(loading)`  | `false`       |             |
+
+
 ## CSS Custom Properties
 
 | Name                               | Description                                        |

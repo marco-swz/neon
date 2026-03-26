@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { NeonButton } from './ne-button';
 
-const TEST_URL = 'http://localhost:8080/tests/button';
+const TEST_URL = 'http://localhost:8080/src/components/ne-button/ne-button.spec.html';
 const DUMMY_URL = 'http://localhost:8080/dummy';
 
 test.beforeEach(async ({ page }) => {

@@ -1,0 +1,15 @@
+{
+  "entries": [
+    "components/ne-button/ne-button.js",
+    "components/ne-dialog/ne-dialog.js",
+    "components/ne-input/ne-input.js"
+  ],
+  "mixins": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "4.43.3",
+    "typescriptVersion": "5.8.3"
+  },
+  "collections": [],
+  "bundles": []
+}
